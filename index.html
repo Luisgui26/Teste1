@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+  <style>
+
+    body{
+      background-color: #3D3B40;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .container {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 50vh;
+    }
+
+    h1{
+      font-size: 5vh;
+      color: #BFCFE7;
+      text-align: center;
+      
+    }
+
+    p{
+      color: #ffffff;
+    }
+
+    .opcoes {
+      display: flex;
+      gap: 10px;
+    }
+
+    button {
+      padding: 10px;
+      font-family: 'Montserrat', sans-serif;
+      color: #ffffff;
+      font-size: 16px;
+      position: absolute;
+      background-color: #525CEB;
+      border: solid #525CEB 2px;
+      border-radius: 15px;
+      padding: 12px;
+      font-size: 3vh;
+      margin-top: 4vh;
+    }
+
+    .posicao-inicial {
+      left: 100px;
+      top: 340px;
+    }
+
+    .posicao1 {
+      left: 10px;
+      top: 1500px;
+    }
+
+    .posicao2 {
+      left: 200px;
+      top: 100px;
+    }
+
+    .posicao3 {
+      left: 300px;
+      top: 700px;
+    }
+
+    .posicao4 {
+      left: 50px;
+      top: 400px;
+    }
+
+    .posicao5 {
+      left: 120px;
+      top: 500px;
+    }
+  </style>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var buttonSim = document.querySelector('.opcoes button:first-child');
+      var buttonNao = document.getElementById('nao');
+      var contadorCliquesNao = 0;
+
+      buttonNao.addEventListener('click', function () {
+        contadorCliquesNao++;
+        reposicionarBotaoNao();
+
+        if (contadorCliquesNao === 4) {
+          alert('Resposta errada.');
+          // Reiniciar o contador para que a lógica funcione após o próximo ciclo de 4 cliques
+          contadorCliquesNao = 0;
+        }
+      });
+
+      buttonSim.addEventListener('click', function () {
+        alert(':)');
+        alert('');
+      });
+
+      function reposicionarBotaoNao() {
+        var novaPosicao = 'posicao1';
+
+        // Adicione mais casos conforme necessário
+        switch (contadorCliquesNao % 5) {
+          case 0:
+            novaPosicao = 'posicao1';
+            break;
+          case 1:
+            novaPosicao = 'posicao2';
+            break;
+          case 2:
+            novaPosicao = 'posicao3';
+            break;
+          case 3:
+            novaPosicao = 'posicao4';
+            break;
+          case 4:
+            novaPosicao = 'posicao5';
+            break;
+        }
+
+        buttonNao.style.left = '';  // Remover a propriedade left definida anteriormente
+        buttonNao.style.top = '';   // Remover a propriedade top definida anteriormente
+
+        buttonNao.classList.remove('posicao1', 'posicao2', 'posicao3', 'posicao4', 'posicao5');
+        buttonNao.classList.add(novaPosicao);
+      }
+    });
+  </script>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Quer sair qualquer dia desses?</h1>
+    <p>(Clica no não primeiro)</p>
+    <div class="opcoes">
+      <button>Sim</button>
+      <button id="nao" class="posicao-inicial">Não</button>
+    </div>
+  </div>
+
+</body>
+</html>
